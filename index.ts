@@ -2,7 +2,10 @@
 // Write a function that will only accept numbers and attend to 
 // all TypeScript weakness flags.
 // : number
-const reviewTotalDisplay = document.querySelector('#reviews')
+
+const returningUserDisplay = document.querySelector('#returning-user');
+const userNameDisplay = document.querySelector('#user');
+const reviewTotalDisplay = document.querySelector('#reviews');
 
 const reviews = [
     {
@@ -25,11 +28,26 @@ const reviews = [
     },
 ]
 
+
 function showReviewTotal(value: number, reviewer: string, isLoyalty: boolean){                      //setting parameters to be passed
     const loyaltyIcon = isLoyalty ? '🌞' : '🔴';
     reviewTotalDisplay.innerHTML = 'review total' + value.toString()            //innerHTML of h5 tag is expecting a string  && swopping value toString
                                     + '| last reviewed by' + reviewer           //pushing a string value
-                                    + loyaltyIcon;
+                                    + ' ' + loyaltyIcon;
 }
 
 showReviewTotal(reviews.length, reviews[0].name, reviews[0].loyaltyUser);                               //calling back function to display
+
+const you = {
+    userName: 'Bobby',
+    isReturning: true,
+}
+
+function populateUser(isReturning: boolean, userName: string){
+    if(isReturning){
+        returningUserDisplay.innerHTML = 'back';
+    }
+    userNameDisplay.innerHTML = userName;
+}
+
+populateUser(you.isReturning, you.userName);
