@@ -118,11 +118,26 @@ for (let i = 0; i < properties.length; i++) {
     const image = document.createElement('img')
     image.setAttribute('src', properties[i].image)
     card.appendChild(image)
+    showDetails(you.permissions, card, properties[i].price)
     propertyContainer.appendChild(card)
-    showDetails(you.permissions, card, properties[i].price )
 }
 
 //set location
 let currentLocation: [string, string, number] = ['South Africa', '13:36', 34]
 footer.innerHTML = currentLocation[0] + ' ' + currentLocation[1] + ' ' + currentLocation[2] + '°';
 
+let yourMainProperty = new MainProperty(
+    'images/italian-property.jpg',
+    'Italian House',
+    [{
+        name: 'Oliver',
+        stars: 5,
+        loyaltyUser: LoyaltyUser.GOLD_USER,
+        date: '12-04-2021'
+    }]
+)
+
+const mainImageContainer = document.querySelector('.main-image')
+const image = document.createElement('img')
+image.setAttribute('src', yourMainProperty.src)
+mainImageContainer.appendChild(image)
