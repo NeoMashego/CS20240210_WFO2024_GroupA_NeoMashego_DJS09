@@ -3,9 +3,15 @@
 // all TypeScript weakness flags.
 // : number
 
-import { showReviewTotal, populateUser, showDetails } from './utils.ts'
+import { showReviewTotal, populateUser, showDetails, getTopTwoReviews } from './utils.ts'
 import { Permissions, LoyaltyUser } from './enums.ts'
+import { Review, Property } from './interfaces.ts'
+import { MainProperty } from './classes.ts'
+
 const propertyContainer = document.querySelector('.properties')
+const reviewContainer = document.querySelector('.reviews')
+const container = document.querySelector('.container')
+const button = document.querySelector('button')
 const footer = document.querySelector('.footer')
 
 let isLoggedIn: boolean
@@ -100,18 +106,6 @@ showReviewTotal(reviews.length, reviews[0].name, reviews[0].loyaltyUser)
 
 populateUser(you.isReturning, you.firstName)
 
-//Authority Status
-let authorityStatus : any
-
-isLoggedIn = true
-
-function showDetails(authorityStatus: boolean | Permissions, element : HTMLDivElement, price: number) {
-   if (authorityStatus) {
-       const priceDisplay = document.createElement('div')
-       priceDisplay.innerHTML = price.toString() + '/night'
-       element.appendChild(priceDisplay)
-   }
-}
 
 //Add the properties
 for (let i = 0; i < properties.length; i++) {
