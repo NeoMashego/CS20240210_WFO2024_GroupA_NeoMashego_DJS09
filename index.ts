@@ -25,8 +25,10 @@ const reviews = [
     },
 ]
 
-function showReviewTotal(value: number){
-    reviewTotalDisplay.innerHTML = 'review total' + value.toString();      //innerHTML of h5 tag is expecting a string
+function showReviewTotal(value: number, reviewer: string){                      //setting parameters to be passed
+    reviewTotalDisplay.innerHTML = 'review total' + value.toString()            //innerHTML of h5 tag is expecting a string  && swopping value toString
+                                    + '| last reviewed by' + reviewer           //pushing a string value
+                                    ;
 }
 
-showReviewTotal(reviews.length);             
+showReviewTotal(reviews.length, reviews[0].name);                               //calling back function to display
