@@ -16,6 +16,7 @@ const footer = document.querySelector('.footer')
 
 let isLoggedIn: boolean
 
+
 //Reviws 
 const reviews: Review[] = [
     {
@@ -38,6 +39,7 @@ const reviews: Review[] = [
     },
 ]
 
+
 //user
 const you = {
     firstName: 'Bobby',
@@ -47,6 +49,7 @@ const you = {
     age: 35,
     stayedAt: ['florida-home', 'oman-flat', 'tokyo-bungalow']
 }
+
 
 //Properties
 const properties : Property[] = [
@@ -104,6 +107,7 @@ const properties : Property[] = [
     }
 ]
 
+
 // Functions Display
 showReviewTotal(reviews.length, reviews[0].name, reviews[0].loyaltyUser)
 
@@ -122,10 +126,33 @@ for (let i = 0; i < properties.length; i++) {
     propertyContainer.appendChild(card)
 }
 
+
 //set location
 let currentLocation: [string, string, number] = ['South Africa', '13:36', 34]
 footer.innerHTML = currentLocation[0] + ' ' + currentLocation[1] + ' ' + currentLocation[2] + '°';
 
+
+//Review
+let count = 0;
+function addReviews(array: Review[]) : void {
+    if(!count){
+        count ++
+        const topTwo = getTopTwoReviews(array)
+        for(let i=0; i < topTwo.length; i++){
+            const card = document.createElement('div')
+            card.classList.add('review-card')
+            card.innerHTML = topTwo[i].stars + ' stars from ' + topTwo[i].name
+            reviewContainer.appendChild(card)
+        }
+        container.removeChild(button)
+    }
+}
+
+//eventListener
+button.addEventListener('click', () => addReviews(reviews))
+
+
+// Main Property 
 let yourMainProperty = new MainProperty(
     'images/italian-property.jpg',
     'Italian House',
