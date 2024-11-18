@@ -24,3 +24,9 @@ const reviews = [
         date: '27-03-2021'
     },
 ]
+
+function showReviewTotal(value: number){
+    reviewTotalDisplay.innerHTML = 'review total' + value.toString();      //innerHTML of h5 tag is expecting a string
+}
+
+showReviewTotal(reviews.length);             
