@@ -25,10 +25,11 @@ const reviews = [
     },
 ]
 
-function showReviewTotal(value: number, reviewer: string){                      //setting parameters to be passed
+function showReviewTotal(value: number, reviewer: string, isLoyalty: boolean){                      //setting parameters to be passed
+    const loyaltyIcon = isLoyalty ? '🌞' : '🔴';
     reviewTotalDisplay.innerHTML = 'review total' + value.toString()            //innerHTML of h5 tag is expecting a string  && swopping value toString
                                     + '| last reviewed by' + reviewer           //pushing a string value
-                                    ;
+                                    + loyaltyIcon;
 }
 
-showReviewTotal(reviews.length, reviews[0].name);                               //calling back function to display
+showReviewTotal(reviews.length, reviews[0].name, reviews[0].loyaltyUser);                               //calling back function to display
