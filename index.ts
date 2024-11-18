@@ -3,19 +3,14 @@
 // all TypeScript weakness flags.
 // : number
 
+import { showReviewTotal, populateUser, showDetails } from './utils.ts'
+import { Permissions, LoyaltyUser } from './enums.ts'
 const propertyContainer = document.querySelector('.properties')
 const footer = document.querySelector('.footer')
-import { showReviewTotal, populateUser } from './utils.ts'
-import { Permissions, LoyaltyUser } from './enums.ts'
 
-let isOpen: boolean
+let isLoggedIn: boolean
 
-const reviews : {
-    name: string;
-    stars: number;
-    loyaltyUser: LoyaltyUser;
-    date: string;
-    }[] = [
+const reviews: any[] = [
     {
         name: 'Sheia',
         stars: 5,
@@ -36,15 +31,10 @@ const reviews : {
     },
 ]
 
-const you: {
-    firstName: string;
-    lastName: string;
-    isReturning: boolean;
-    age: number;
-    stayedAt: string[]
-} = {
+const you = {
     firstName: 'Bobby',
     lastName: 'Brown',
+    permissions: Permissions.ADMIN,
     isReturning: true,
     age: 35,
     stayedAt: ['florida-home', 'oman-flat', 'tokyo-bungalow']
@@ -110,6 +100,19 @@ showReviewTotal(reviews.length, reviews[0].name, reviews[0].loyaltyUser)
 
 populateUser(you.isReturning, you.firstName)
 
+//Authority Status
+let authorityStatus : any
+
+isLoggedIn = true
+
+function showDetails(authorityStatus: boolean | Permissions, element : HTMLDivElement, price: number) {
+   if (authorityStatus) {
+       const priceDisplay = document.createElement('div')
+       priceDisplay.innerHTML = price.toString() + '/night'
+       element.appendChild(priceDisplay)
+   }
+}
+
 //Add the properties
 for (let i = 0; i < properties.length; i++) {
     const card = document.createElement('div')
@@ -119,6 +122,7 @@ for (let i = 0; i < properties.length; i++) {
     image.setAttribute('src', properties[i].image)
     card.appendChild(image)
     propertyContainer.appendChild(card)
+    showDetails(you.permissions, card, properties[i].price )
 }
 
 //set location
