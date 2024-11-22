@@ -3,10 +3,10 @@
 // all TypeScript weakness flags.
 // : number
 
-import { showReviewTotal, populateUser, showDetails, getTopTwoReviews } from './utils'
-import { Permissions, LoyaltyUser } from './enums'
-import { Review, Property } from './interfaces'
-import MainProperty from './classes'
+import { showReviewTotal, populateUser, showDetails, getTopTwoReviews } from './components/utils'
+import { Permissions, LoyaltyUser } from './components/enums'
+import { Review, Property } from './components/interfaces'
+import MainProperty from './components/classes'
 
 const propertyContainer = document.querySelector('.properties')
 const reviewContainer = document.querySelector('.reviews')
