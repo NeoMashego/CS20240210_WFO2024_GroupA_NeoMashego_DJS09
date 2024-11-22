@@ -1,5 +1,5 @@
 import { LoyaltyUser, Permissions } from './enums'
-import { Review } from './components/interfaces'
+import { Review } from './interfaces'
 
 const returningUserDisplay = document.querySelector('#returning-user');
 const userNameDisplay = document.querySelector('#user');
